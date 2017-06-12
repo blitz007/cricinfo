@@ -4,7 +4,7 @@ url = "http://www.espncricinfo.com/ci/engine/match/index.html?date="
 date = raw_input("What is the date(yyyy-mm-dd) of the match?")
 url1 = url + date
 data = urllib.urlopen(url1).read()
-#print data
+#print dat
 #team = raw_input("Give name of first team involved in the match:")
 ###FIRST INNINGS
 m = re.search('<div class="innings-info-1">',data)
