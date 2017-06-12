@@ -4,7 +4,7 @@ url = "http://www.espncricinfo.com/ci/engine/match/index.html?date="
 date = raw_input("What is the date(yyyy-mm-dd) of the match?")
 url1 = url + date
 data = urllib.urlopen(url1).read()
-#print dat
+#print data
 #team = raw_input("Give name of first team involved in the match:")
 ###FIRST INNINGS
 m = re.search('<div class="innings-info-1">',data)
@@ -18,7 +18,8 @@ firstInnings_start=firstInnings.end()
 firstInnings_end=firstInnings_start + 60
 #print x[firstInnings_start:firstInnings_end]
 firstInnings_final= x[firstInnings_start:firstInnings_end]
-team_first = firstInnings_final[0:13]
+p=re.search('<span class="bold"',firstInnings_final)
+team_first = firstInnings_final[0:p.start()]
 #print team_first
 #print firstInnings_final
 q = re.search('<span class="bold">',firstInnings_final)
@@ -27,7 +28,6 @@ q = re.search('</span>',firstInnings_final)
 score_first_end = q.start()
 score_final = firstInnings_final[score_first_start:score_first_end]
 print team_first+":"+score_final
-
 ###SECOND INNINGS
 m = re.search('<div class="innings-info-2">',data)
 start = m.start()
@@ -39,8 +39,9 @@ secondInnings = re.search('<div class="innings-info-2">',x)
 secondInnings_start=secondInnings.end()
 secondInnings_end=secondInnings_start + 80
 #print x[firstInnings_start:firstInnings_end]
-secondInnings_final= x[secondInnings_start:secondInnings_end]
-team_second = secondInnings_final[0:13]
+secondInnings_final=x[secondInnings_start:secondInnings_end]
+p=re.search('<span class="bold"',secondInnings_final)
+team_second = secondInnings_final[0:p.start()]
 #print team_first
 #print firstInnings_final
 q = re.search('<span class="bold">',secondInnings_final)
